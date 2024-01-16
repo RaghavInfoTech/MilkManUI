@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.dreamfutureone.milkmanui.HomeActivity;
 import com.dreamfutureone.milkmanui.R;
+import com.dreamfutureone.milkmanui.ui.account.CreateAccountActivity;
 import com.dreamfutureone.milkmanui.ui.login.LoginViewModel;
 import com.dreamfutureone.milkmanui.ui.login.LoginViewModelFactory;
 import com.dreamfutureone.milkmanui.databinding.ActivityLoginBinding;
@@ -44,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = binding.password;
         final Button loginButton = binding.login;
         final ProgressBar loadingProgressBar = binding.loading;
+        final Button btnSignUP = binding.btnSignUp;
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -120,6 +122,15 @@ public class LoginActivity extends AppCompatActivity {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
+            }
+        });
+
+        btnSignUP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), CreateAccountActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

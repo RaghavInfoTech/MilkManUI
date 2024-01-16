@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.NonNull;
 
-import com.dreamfutureone.milkmanui.data.LoginDataSource;
-import com.dreamfutureone.milkmanui.data.LoginRepository;
+import com.dreamfutureone.milkmanui.data.datasources.LoginDataSource;
+import com.dreamfutureone.milkmanui.data.repositories.LoginRepository;
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

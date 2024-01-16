@@ -5,10 +5,14 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import android.util.Patterns;
 
-import com.dreamfutureone.milkmanui.data.LoginRepository;
+import com.dreamfutureone.milkmanui.data.model.api.CustomerAuthResponse;
+import com.dreamfutureone.milkmanui.data.repositories.LoginRepository;
 import com.dreamfutureone.milkmanui.data.Result;
 import com.dreamfutureone.milkmanui.data.model.LoggedInUser;
 import com.dreamfutureone.milkmanui.R;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class LoginViewModel extends ViewModel {
 
@@ -30,14 +34,23 @@ public class LoginViewModel extends ViewModel {
 
     public void login(String username, String password) {
         // can be launched in a separate asynchronous job
-        Result<LoggedInUser> result = loginRepository.login(username, password);
+        loginRepository.login(username, password, new Callback() {
+            @Override
+            public void onResponse(Response response, Retrofit retrofit) {
+                if(response.isSuccess()){
+                    CustomerAuthResponse authResponse = (CustomerAuthResponse) response.body();
+                    loginResult.setValue(new LoginResult(new LoggedInUserView(authResponse.getCustomerName())));
+                }else{
+                    loginResult.setValue(new LoginResult(R.string.login_failed));
+                }
+            }
 
-        if (result instanceof Result.Success) {
-            LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
-            loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
-        } else {
-            loginResult.setValue(new LoginResult(R.string.login_failed));
-        }
+            @Override
+            public void onFailure(Throwable t) {
+                loginResult.setValue(new LoginResult(R.string.login_failed));
+            }
+        });
+
     }
 
     public void loginDataChanged(String username, String password) {
