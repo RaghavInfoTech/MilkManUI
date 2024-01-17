@@ -3,9 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/projects/Repo/andoid_UI_repos/MilkManUI/app/src/main/res/layout/activity_create_account.xml" value="0.2725430597771023" />
         <entry key="..\:/projects/Repo/andoid_UI_repos/MilkManUI/app/src/main/res/layout/activity_home.xml" value="0.29375" />
         <entry key="..\:/projects/Repo/andoid_UI_repos/MilkManUI/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/projects/Repo/andoid_UI_repos/MilkManUI/app/src/main/res/layout/activity_products.xml" value="0.33" />
+        <entry key="..\:/projects/Repo/andoid_UI_repos/MilkManUI/app/src/main/res/layout/content_scrolling.xml" value="0.2725430597771023" />
         <entry key="..\:/projects/Repo/andoid_UI_repos/MilkManUI/app/src/main/res/layout/fragment_home.xml" value="0.29375" />
+        <entry key="..\:/projects/Repo/andoid_UI_repos/MilkManUI/app/src/main/res/menu/bottom_nav_menu.xml" value="0.5661538461538461" />
       </map>
     </option>
   </component>

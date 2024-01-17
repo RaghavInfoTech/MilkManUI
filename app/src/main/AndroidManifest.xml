@@ -12,6 +12,9 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.MilkManUI">
         <activity
+                android:name=".ui.products.ProductsActivity"
+                android:exported="true"/>
+        <activity
                 android:name=".ui.account.CreateAccountActivity"
                 android:exported="true"/>
         <activity
