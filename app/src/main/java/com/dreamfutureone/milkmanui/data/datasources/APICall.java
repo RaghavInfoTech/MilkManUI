@@ -1,11 +1,11 @@
 package com.dreamfutureone.milkmanui.data.datasources;
 
-import com.dreamfutureone.milkmanui.data.model.api.CustomerAuthRequest;
-import com.dreamfutureone.milkmanui.data.model.api.CustomerAuthResponse;
+import com.dreamfutureone.milkmanui.data.model.api.*;
 import com.dreamfutureone.milkmanui.utils.MilkManConstant;
 import retrofit.*;
 
 import java.io.IOException;
+import java.util.List;
 
 public class APICall {
 
@@ -22,8 +22,7 @@ public class APICall {
 
     static void loginCustomer(String userName, String pwd, Callback loginCallback) {
 
-        Retrofit retrofit = getRetrofitInstance();
-        APIService apiService = retrofit.create(APIService.class);
+        APIService apiService = getRetrofitInstance().create(APIService.class);
 
         CustomerAuthRequest authRequest = new CustomerAuthRequest();
         authRequest.setEmailIdOrPhone(userName);
@@ -33,5 +32,21 @@ public class APICall {
 
         //Async call
         authResponseCall.enqueue(loginCallback);
+    }
+
+    static void registerCustomer(CustomerRegRequest custRegister, Callback custRegCallback) {
+        APIService apiService = getRetrofitInstance().create(APIService.class);
+
+        Call<CustomerRegResponse> customerRegResponseCall = apiService.registerCustomer(custRegister);
+
+        //Async call
+        customerRegResponseCall.enqueue(custRegCallback);
+    }
+
+    static void getProducts(Callback productsCallback) {
+        APIService apiService = getRetrofitInstance().create(APIService.class);
+
+        //Async call
+        apiService.getProducts().enqueue(productsCallback);
     }
 }
