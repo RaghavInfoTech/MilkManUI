@@ -19,4 +19,7 @@ public interface APIService {
 
     @GET("/milkman/product/getProducts")
     Call<List<ProductDetails>> getProducts();
+
+    @POST("/milkman/subscribe/create")
+    Call<SubscribeResponse> subscribe(@Body SubscribeRequest subscribeRequest);
 }

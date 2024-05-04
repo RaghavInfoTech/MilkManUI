@@ -2,10 +2,10 @@ package com.dreamfutureone.milkmanui.data.datasources;
 
 import com.dreamfutureone.milkmanui.data.model.api.*;
 import com.dreamfutureone.milkmanui.utils.MilkManConstant;
-import retrofit.*;
-
-import java.io.IOException;
-import java.util.List;
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Retrofit;
 
 public class APICall {
 
@@ -48,5 +48,14 @@ public class APICall {
 
         //Async call
         apiService.getProducts().enqueue(productsCallback);
+    }
+
+    static void subscribe(SubscribeRequest subRequest, Callback subscribeCallback) {
+        APIService apiService = getRetrofitInstance().create(APIService.class);
+
+        Call<SubscribeResponse> response = apiService.subscribe(subRequest);
+
+        //Async call
+        response.enqueue(subscribeCallback);
     }
 }

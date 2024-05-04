@@ -39,7 +39,8 @@ public class LoginViewModel extends ViewModel {
             public void onResponse(Response response, Retrofit retrofit) {
                 if(response.isSuccess()){
                     CustomerAuthResponse authResponse = (CustomerAuthResponse) response.body();
-                    loginResult.setValue(new LoginResult(new LoggedInUserView(authResponse.getCustomerName())));
+                    loginResult.setValue(new LoginResult(new LoggedInUserView(authResponse.getCustomerName(),
+                            authResponse.getCustomerId(), authResponse.getAuthToken())));
                 }else{
                     loginResult.setValue(new LoginResult(R.string.login_failed));
                 }

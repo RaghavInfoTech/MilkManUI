@@ -2,29 +2,23 @@ package com.dreamfutureone.milkmanui.ui.login;
 
 import android.app.Activity;
 import android.content.Intent;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.dreamfutureone.milkmanui.HomeActivity;
+import android.widget.*;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import com.dreamfutureone.milkmanui.R;
-import com.dreamfutureone.milkmanui.ui.account.CreateAccountActivity;
-import com.dreamfutureone.milkmanui.ui.login.LoginViewModel;
-import com.dreamfutureone.milkmanui.ui.login.LoginViewModelFactory;
+import com.dreamfutureone.milkmanui.data.repositories.MilkManDBRepo;
 import com.dreamfutureone.milkmanui.databinding.ActivityLoginBinding;
+import com.dreamfutureone.milkmanui.ui.account.CreateAccountActivity;
+import com.dreamfutureone.milkmanui.ui.subscribe.SubscribeActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -74,11 +68,16 @@ public class LoginActivity extends AppCompatActivity {
                     showLoginFailed(loginResult.getError());
                 }
                 if (loginResult.getSuccess() != null) {
+                    MilkManDBRepo milkManDBRepo = new MilkManDBRepo(LoginActivity.this);
+                    milkManDBRepo.saveCustomer(
+                            loginResult.getSuccess().getCustomerId(),
+                            loginResult.getSuccess().getDisplayName(),
+                            loginResult.getSuccess().getAuthToken());
                     updateUiWithUser(loginResult.getSuccess());
                 }
                 setResult(Activity.RESULT_OK);
 
-                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                Intent intent = new Intent(LoginActivity.this, SubscribeActivity.class);
                 startActivity(intent);
                 //Complete and destroy login activity once successful
                 finish();

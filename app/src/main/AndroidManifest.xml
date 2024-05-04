@@ -12,6 +12,15 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.MilkManUI">
         <activity
+                android:name=".ui.subscribe.SubscribeActivity"
+                android:exported="true">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN"/>-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER"/>-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity
                 android:name=".ui.products.ProductsActivity"
                 android:exported="true"/>
         <activity
