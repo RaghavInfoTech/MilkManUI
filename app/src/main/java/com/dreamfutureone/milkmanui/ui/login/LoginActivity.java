@@ -14,6 +14,7 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import com.dreamfutureone.milkmanui.HomeActivity;
 import com.dreamfutureone.milkmanui.R;
 import com.dreamfutureone.milkmanui.data.repositories.MilkManDBRepo;
 import com.dreamfutureone.milkmanui.databinding.ActivityLoginBinding;
@@ -77,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 setResult(Activity.RESULT_OK);
 
-                Intent intent = new Intent(LoginActivity.this, SubscribeActivity.class);
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 startActivity(intent);
                 //Complete and destroy login activity once successful
                 finish();

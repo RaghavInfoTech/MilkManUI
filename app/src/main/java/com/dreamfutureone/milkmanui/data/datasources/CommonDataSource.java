@@ -12,7 +12,12 @@ public class CommonDataSource {
 
     }
 
-    public void getProducts(Callback productCallback){
+    public void getProducts(Callback productCallback) {
         APICall.getProducts(productCallback);
+    }
+
+
+    public void getSubscriptions(String customerId, Callback subscriptionCallback) {
+        APICall.getSubscriptions(customerId, subscriptionCallback);
     }
 }

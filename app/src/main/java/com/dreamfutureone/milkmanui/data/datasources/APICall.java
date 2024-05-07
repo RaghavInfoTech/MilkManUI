@@ -58,4 +58,11 @@ public class APICall {
         //Async call
         response.enqueue(subscribeCallback);
     }
+
+    static void getSubscriptions(String customerId, Callback subscriptionsCallback) {
+        APIService apiService = getRetrofitInstance().create(APIService.class);
+
+        //Async call
+        apiService.getSubscriptionByCustomerId(customerId).enqueue(subscriptionsCallback);
+    }
 }
